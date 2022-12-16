@@ -18,7 +18,7 @@ class CitasController extends Controller
         $citas = DB::table('citas')
                 ->where('fecha', '=', $request->fecha)
                 ->where('especialidad_id', '=', $request->especialidad_id)
-                ->select('fecha', 'hora_inicio','hora_final')
+                ->select('fecha', 'hora_inicio','hora_final','estado')
                 ->get();
         
         return $citas;
@@ -42,7 +42,24 @@ class CitasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'fecha' => 'required|date',
+            'hora_inicio' => 'required',
+            'hora_final' => 'required',
+            'paciente_id' => 'required|numeric',
+            'especialidad_id' => 'required|numeric',
+        ]);
+
+
+        $cita = new Cita;
+        $cita->fecha = $request->fecha;
+        $cita->hora_inicio = $request->hora_inicio;
+        $cita->hora_final = $request->hora_final;
+        $cita->paciente_id = $request->paciente_id;
+        $cita->especialidad_id = $request->especialidad_id;
+        $cita->save();
+
+        return "La cita se registro con exito";
     }
 
     /**
@@ -89,4 +106,5 @@ class CitasController extends Controller
     {
         //
     }
+
 }

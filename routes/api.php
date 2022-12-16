@@ -19,5 +19,6 @@ use App\Http\Controllers\CitasController;
     return $request->user();
 });*/
 
+
 Route::apiResource('users', UsersController::class);
 Route::apiResource('citas', CitasController::class);
