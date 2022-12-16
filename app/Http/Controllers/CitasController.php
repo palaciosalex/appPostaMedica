@@ -59,7 +59,7 @@ class CitasController extends Controller
         $cita->especialidad_id = $request->especialidad_id;
         $cita->save();
 
-        return "La cita se registro con exito";
+        return true;
     }
 
     /**

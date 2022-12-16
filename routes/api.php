@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CitasController;
+use App\Http\Controllers\EspecialidadsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +20,6 @@ use App\Http\Controllers\CitasController;
     return $request->user();
 });*/
 
-
+Route::get('especialidades', [EspecialidadsController::class, 'index']);
 Route::apiResource('users', UsersController::class);
 Route::apiResource('citas', CitasController::class);
